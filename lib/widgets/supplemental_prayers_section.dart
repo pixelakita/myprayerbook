@@ -18,7 +18,6 @@ class SupplementalPrayersSection extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
     final Map<String, dynamic> layout = content.layout;
     final Map<String, dynamic> supplemental = content.supplementalPrayers;
-    final double alpha = (content.app['theme'] as Map<String, dynamic>)['surfaceContainerHighestAlpha'] as double;
 
     return AppCard(
       content: content,
@@ -34,29 +33,81 @@ class SupplementalPrayersSection extends StatelessWidget {
             final String title = prayer['title'] ?? '';
             final String text = prayer['text'] ?? '';
 
-            return Card(
+            return Container(
               margin: EdgeInsets.only(
                 bottom: content.doubleAt(layout, 'mediumGap') - 2,
               ),
-              elevation: 0,
-              color: theme.colorScheme.surfaceContainerHighest.withValues(
-                alpha: alpha,
+              decoration: BoxDecoration(
+                color: content.colorAt('white'),
+                borderRadius: BorderRadius.circular(
+                  content.doubleAt(layout, 'cardBorderRadius'),
+                ),
+                border: Border.all(
+                  color: content.colorAt('mutedBorder'),
+                ),
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                    color: content.colorAt('shadow'),
+                    blurRadius: content.doubleAt(layout, 'cardShadowBlur'),
+                    offset: Offset(
+                      0,
+                      content.doubleAt(layout, 'cardShadowOffsetY'),
+                    ),
+                  ),
+                ],
               ),
               child: Theme(
                 data: theme.copyWith(dividerColor: Colors.transparent),
                 child: ExpansionTile(
-                  tilePadding: const EdgeInsets.symmetric(horizontal: 12),
-                  childrenPadding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
-                  title: Text(title, style: theme.textTheme.titleMedium),
+                  tilePadding: EdgeInsets.symmetric(
+                    horizontal: content.doubleAt(layout, 'mediumGap'),
+                    vertical: 6,
+                  ),
+                  childrenPadding: EdgeInsets.fromLTRB(
+                    content.doubleAt(layout, 'mediumGap'),
+                    0,
+                    content.doubleAt(layout, 'mediumGap'),
+                    content.doubleAt(layout, 'mediumGap'),
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      content.doubleAt(layout, 'cardBorderRadius'),
+                    ),
+                  ),
+                  collapsedShape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      content.doubleAt(layout, 'cardBorderRadius'),
+                    ),
+                  ),
+                  backgroundColor: Colors.transparent,
+                  collapsedBackgroundColor: Colors.transparent,
                   iconColor: theme.colorScheme.primary,
                   collapsedIconColor: theme.colorScheme.primary,
+                  title: Text(
+                    title,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                   children: <Widget>[
-                    Align(
-                      alignment: Alignment.centerLeft,
+                    Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(
+                        content.doubleAt(layout, 'mediumGap'),
+                      ),
+                      decoration: BoxDecoration(
+                        color: content.colorAt('white'),
+                        borderRadius: BorderRadius.circular(
+                          content.doubleAt(layout, 'journalBorderRadius'),
+                        ),
+                      ),
                       child: SelectableText(
                         text,
                         style: theme.textTheme.bodyMedium?.copyWith(
-                          height: content.doubleAt(layout, 'supplementalPrayerLineHeight'),
+                          height: content.doubleAt(
+                            layout,
+                            'supplementalPrayerLineHeight',
+                          ),
                         ),
                       ),
                     ),

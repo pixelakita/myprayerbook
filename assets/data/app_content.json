@@ -1,0 +1,317 @@
+{
+  "app": {
+    "title": "Prayer Book",
+    "debugShowCheckedModeBanner": false,
+    "theme": {
+      "seedColor": "0xFF8C6A43",
+      "scaffoldBackgroundColor": "0xFFF7F3EE",
+      "useMaterial3": true,
+      "surfaceContainerHighestAlpha": 0.35
+    }
+  },
+  "layout": {
+    "pagePadding": 16,
+    "sectionSpacing": 16,
+    "wideHomeBreakpoint": 1000,
+    "wideRosaryBreakpoint": 1050,
+    "minimumRosaryHeight": 860,
+    "mobileRosaryPanelHeight": 980,
+    "openingChainCount": 7,
+    "closingPrayerCount": 0,
+    "loopCenterY": 300,
+    "loopRadiusY": 270,
+    "loopRadiusXFactor": 0.45,
+    "loopWidthWeightFactor": 0.25,
+    "openingChainOffsets": [
+      264,
+      208,
+      158,
+      112,
+      74,
+      36,
+      0
+    ],
+    "smallGap": 8,
+    "mediumGap": 12,
+    "largeGap": 16,
+    "extraLargeGap": 18,
+    "cardBorderRadius": 24,
+    "tileBorderRadius": 16,
+    "smallTileBorderRadius": 14,
+    "journalBorderRadius": 18,
+    "mysteryCircleRadius": 13,
+    "beadAnimationMillis": 180,
+    "beadSmallSize": 15,
+    "beadLargeSize": 24,
+    "beadCrossIconSize": 28,
+    "beadCrossOffset": 14,
+    "beadLargeOffset": 12,
+    "beadSmallOffset": 7,
+    "pathStrokeWidth": 2.2,
+    "activeBorderWidth": 2.2,
+    "defaultBorderWidth": 1.2,
+    "selectedDateBorderWidth": 1.6,
+    "defaultDateBorderWidth": 1.0,
+    "todayDotSize": 8,
+    "todayDotTop": 6,
+    "todayDotRight": 6,
+    "calendarGridCrossAxisCount": 7,
+    "calendarGridSpacing": 8,
+    "calendarGridChildAspectRatio": 1.0,
+    "rosaryPrimaryPrayerLineHeight": 1.6,
+    "supplementalPrayerLineHeight": 1.5,
+    "cardShadowBlur": 16,
+    "cardShadowOffsetY": 6,
+    "beadShadowBlur": 6,
+    "beadShadowOffsetY": 2
+  },
+  "colors": {
+    "appCardBackground": "0xFFF2EADF",
+    "appCardBorder": "0xFFE0D7CD",
+    "mutedBorder": "0xFFD8D0C8",
+    "beadBorder": "0xFFB9AEA3",
+    "crossColor": "0xFF8A7F74",
+    "pathColor": "0xFFCCBFB3",
+    "white": "0xFFFFFFFF",
+    "shadow": "0x14000000",
+    "mutedText": "0x8A000000"
+  },
+  "calendar": {
+    "title": "Rosary Calendar",
+    "subtitle": "Tap a day to show the rosary guide for that date.",
+    "weekdaysShort": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "monthNames": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
+  },
+  "journal": {
+    "title": "Daily Journal",
+    "descriptionTemplate": "Write reflections, prayer intentions, or anything for {month}/{day}/{year}.",
+    "hint": "Today I am grateful for...\n\nPrayer intentions:\n-\n\nNotes:",
+    "saveLabel": "Save Entry"
+  },
+  "rosaryGuide": {
+    "steps": [
+      "Make the Sign of the Cross",
+      "Pray the Apostles’ Creed",
+      "Pray the Our Father",
+      "Pray 3 Hail Marys",
+      "Pray the Glory Be",
+      "Announce each mystery and pray each decade",
+      "Conclude with the Hail Holy Queen"
+    ],
+    "guidesByWeekday": {
+      "Monday": {
+        "title": "Joyful Mysteries",
+        "focus": "Meditate on Christ’s early life and hidden years."
+      },
+      "Tuesday": {
+        "title": "Sorrowful Mysteries",
+        "focus": "Reflect on Christ’s passion and sacrifice."
+      },
+      "Wednesday": {
+        "title": "Glorious Mysteries",
+        "focus": "Contemplate the resurrection and heavenly glory."
+      },
+      "Thursday": {
+        "title": "Luminous Mysteries",
+        "focus": "Pray through Christ’s public ministry and revelation."
+      },
+      "Friday": {
+        "title": "Sorrowful Mysteries",
+        "focus": "Remain with Christ in His suffering and mercy."
+      },
+      "Saturday": {
+        "title": "Joyful Mysteries",
+        "focus": "Enter the quiet joy of expectation and devotion."
+      },
+      "Sunday": {
+        "title": "Glorious Mysteries",
+        "focus": "Celebrate victory, hope, and eternal life."
+      }
+    },
+    "defaultWeekday": "Wednesday",
+    "weekdayNames": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ]
+  },
+  "interactiveRosary": {
+    "resetTooltip": "Reset",
+    "openInteractiveRosaryTooltip": "Open interactive rosary",
+    "additionalPrayersTitle": "Additional Prayers",
+    "mysteryGroupsTitle": "Mystery Groups",
+    "nextBeadLabel": "Next Bead",
+    "previousLabel": "Previous",
+    "startOverLabel": "Start Over",
+    "currentPrayerProgressTemplate": "Prayer {current} of {total} on this bead",
+    "mysteryTitleTemplate": "Mystery {number}: {title}",
+    "beadProgressTemplate": "{group} • Bead {current} of {total}",
+    "decadeTitleTemplate": "Decade {number}: {title}",
+    "openingPrayersGroup": "Opening Prayers",
+    "shortPlaceholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "mediumPlaceholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "longPlaceholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.",
+    "prayerTexts": {
+      "Sign of the Cross": "Begin with the sign of the cross.",
+      "Apostles’ Creed": "I believe in God,\nthe Father almighty,\nCreator of heaven and earth,\nand in Jesus Christ, his only Son, our Lord,\nwho was conceived by the power of the Holy Spirit,\nborn of the Virgin Mary,\nsuffered under Pontius Pilate,\nwas crucified, died and was buried;\nhe descended into hell;\non the third day he rose again from the dead;\nhe ascended into heaven,\nand is seated at the right hand of God the Father almighty;\nfrom there he will come to judge the living and the dead.\n\nI believe in the Holy Spirit,\nthe holy catholic Church,\nthe communion of saints,\nthe forgiveness of sins,\nthe resurrection of the body,\nand life everlasting.\n\nAmen.",
+      "Our Father": "Our Father, who art in heaven,\nhallowed be thy name;\nthy kingdom come; thy will be done;\non earth as it is in heaven.\n\nGive us this day our daily bread.\nAnd forgive us our trespasses,\nas we forgive those who trespass against us.\nAnd lead us not into temptation;\nbut deliver us from evil.\nFor thine is the kingdom, the power and the glory,\nfor ever and ever.\n\nAmen.",
+      "Hail Mary": "Hail Mary, full of grace,\nthe Lord is with you.\nBlessed are you among women,\nand blessed is the fruit of thy womb, Jesus.\n\nHoly Mary, Mother of God,\npray for us sinners,\nnow and at the hour of our death.\n\nAmen.",
+      "Glory Be": "Glory be to the Father,\nand to the Son,\nand to the Holy Spirit,\nas it was in the beginning,\nis now,\nand ever shall be,\nworld without end.\n\nAmen",
+      "Fatima Prayer": "O my Jesus,\nforgive us our sins,\nsave us from the fires of hell;\nand lead all souls into heaven,\nespecially those in most need of Thy mercy.",
+      "Hail Holy Queen": "Hail, Holy Queen, Mother of Mercy,\nour life, our sweetness and our hope.\nTo thee do we cry,\npoor banished children of Eve.\nTo thee do we send up our sighs,\nmourning and weeping in this valley of tears.\nTurn then, most gracious advocate,\nthine eyes of mercy toward us,\nand after this our exile\nshow unto us the blessed fruit of thy womb, Jesus.\nO clement, O loving,\nO sweet Virgin Mary.\n\nLet us pray.\n\nO God,\nwhose only begotten Son,\nby His life, death, and resurrection,\nhas purchased for us the rewards of eternal life,\ngrant, we beseech Thee, that\nmeditating upon these mysteries of the Most Holy Rosary\nof the Blessed Virgin Mary,\nwe may imitate what they contain\nand obtain what they promise,\nthrough the same Christ Our Lord.\n\nAmen."
+    },
+    "mysteriesByTitleKeyword": {
+      "Joyful": [
+        "The Annunciation",
+        "The Visitation",
+        "The Nativity",
+        "The Presentation",
+        "The Finding in the Temple"
+      ],
+      "Sorrowful": [
+        "The Agony in the Garden",
+        "The Scourging at the Pillar",
+        "The Crowning with Thorns",
+        "The Carrying of the Cross",
+        "The Crucifixion"
+      ],
+      "Luminous": [
+        "The Baptism of Jesus",
+        "The Wedding at Cana",
+        "The Proclamation of the Kingdom",
+        "The Transfiguration",
+        "The Institution of the Eucharist"
+      ],
+      "default": [
+        "The Resurrection",
+        "The Ascension",
+        "The Descent of the Holy Spirit",
+        "The Assumption",
+        "The Coronation of Mary"
+      ]
+    },
+    "additionalPrayers": [
+      {
+        "title": "Litany of the Blessed Virgin Mary",
+        "text": "Lord, have mercy on us.\nChrist, have mercy on us.\n\nLord, have mercy on us.\nChrist hear us.\n\nChrist, graciously hear us.\n\nGod the Father of heaven, Have mercy on us.\nGod the Son, Redeemer of the world, Have mercy on us.\nGod the Holy Spirit, Have mercy on us.\nHoly Trinity, one God, Have mercy on us.\n\nHoly Mary, Pray for us. (repeat after each line)\nHoly Mother of God,\nHoly Virgin of virgins,\n\nMother of Christ,\nMother of the Church,\nMother of Mercy,\nMother of Divine Grace,\nMother of Hope,\nMother Most Pure,\nMother Most Chaste,\nMother Inviolate,\nMother Undefiled,\nMother Most Amiable,\nMother Most Admirable,\nMother of Good Counsel,\nMother of our Creator,\nMother of our Savior,\n\nVirgin Most Prudent,\nVirgin Most Venerable,\nVirgin Most Renowned,\nVirgin Most Powerful,\nVirgin Most Merciful,\nVirgin Most Faithful,\n\nMirror of Justice,\nSeat of Wisdom,\nCause of Our Joy,\nSpiritual Vessel,\nVessel of Honor,\nSingular Vessel of Devotion,\nMystical Rose,\nTower of David,\nTower of Ivory,\nHouse of Gold,\nArk of the Covenant,\nGate of Heaven,\nMorning Star,\n\nHealth of the Sick,\nRefuge of Sinners,\nSolace of Migrants,\nComforter of the afflicted,\nHelp of Christians,\n\nQueen of Angels,\nQueen of Patriarchs,\nQueen of Prophets,\nQueen of Apostles,\nQueen of Martyrs,\nQueen of Confessors,\nQueen of Virgins,\nQueen of all Saints,\nQueen conceived without Original Sin,\nQueen assumed into heaven,\nQueen of the Most Holy Rosary,\nQueen of Families,\nQueen of Peace,\n\nLamb of God, you take away the sins of the world, Spare us, O Lord.\nLamb of God, you take away the sins of the world, Graciously hear us, O Lord.\nLamb of God, you take away the sins of the world, Have mercy on us.\n\nV. Pray for us, O holy Mother of God,\nR. That we may be made worthy of the promises of Christ.\n\nLet us pray, Grant, we beseech you, O Lord God, that we your servants may enjoy lasting health of mind and body and, by the glorious intercession of Blessed Mary, ever Virgin, may we be delivered from present sorrow to delight in joy eternal. Through Christ our Lord.\n\nAmen."
+      },
+      {
+        "title": "Prayer to St. Michael",
+        "text": "St. Michael the Archangel, \ndefend us in battle, \nbe our protection against the wickedness and snares of the devil. \nMay God rebuke him we humbly pray; \nand do thou, O Prince of the Heavenly host, \nby the power of God, \ncast into hell Satan \nand all the evil spirits who prowl about the world seeking the ruin of souls.\n\nAmen."
+      },
+      {
+        "title": "Prayer to St. Joseph",
+        "text": "To you, O blessed Joseph,\ndo we come in our tribulation,\nand having implored the help of your most holy Spouse,\nwe confidently invoke your patronage also.\n\nThrough that charity which bound you\nto the Immaculate Virgin Mother of God\nand through the paternal love\nwith which you embraced the Child Jesus,\nwe humbly beg you graciously to regard the inheritance\nwhich Jesus Christ has purchased by his Blood,\nand with your power and strength to aid us in our necessities.\n\nO most watchful guardian of the Holy Family,\ndefend the chosen children of Jesus Christ;\nO most loving father, ward off from us\nevery contagion of error and corrupting influence;\nO our most mighty protector, be kind to us\nand from heaven assist us in our struggle\nwith the power of darkness.\n\nAs once you rescued the Child Jesus from deadly peril,\nso now protect God's Holy Church\nfrom the snares of the enemy and from all adversity;\nshield, too, each one of us by your constant protection,\nso that, supported by your example and your aid,\nwe may be able to live piously, to die in holiness,\nand to obtain eternal happiness in heaven.\n\nAmen."
+      }
+    ],
+    "openingChain": [
+      {
+        "prayers": [
+          "Sign of the Cross"
+        ],
+        "label": "Begin with the Sign of the Cross on the crucifix.",
+        "group": "Opening Prayers",
+        "isCross": true
+      },
+      {
+        "prayers": [
+          "Apostles’ Creed"
+        ],
+        "label": "Pray the Apostles’ Creed on the medal bead.",
+        "group": "Opening Prayers"
+      },
+      {
+        "prayers": [
+          "Our Father"
+        ],
+        "label": "Pray the Our Father on the first large bead.",
+        "group": "Opening Prayers",
+        "isLarge": true
+      },
+      {
+        "prayers": [
+          "Hail Mary"
+        ],
+        "label": "Pray the third Hail Mary for charity.",
+        "group": "Opening Prayers",
+        "beadInDecade": 3
+      },
+      {
+        "prayers": [
+          "Hail Mary"
+        ],
+        "label": "Pray the second Hail Mary for hope.",
+        "group": "Opening Prayers",
+        "beadInDecade": 2
+      },
+      {
+        "prayers": [
+          "Hail Mary"
+        ],
+        "label": "Pray the first Hail Mary for faith.",
+        "group": "Opening Prayers",
+        "beadInDecade": 1
+      },
+      {
+        "prayers": [
+          "Glory Be",
+          "Fatima Prayer",
+          "Our Father"
+        ],
+        "label": "Pray the Glory Be, Fatima Prayer, and Our Father for first Mystery.",
+        "group": "Opening Prayers",
+        "isLarge": true
+      }
+    ]
+  },
+  "supplementalPrayers": {
+    "title": "Supplemental Prayers",
+    "items": [
+      {
+        "title": "Morning Offering",
+        "text": "O Jesus,\nthrough the Immaculate Heart of Mary,\nI offer You my prayers, works,\njoys and sufferings\nof this day for all the intentions\nof Your Sacred Heart,\nin union with the Holy Sacrifice of the Mass\nthroughout the world,\nin reparation for my sins,\nfor the intentions of all my relatives and friends,\nand in particular\nfor the intentions of the Holy Father.\n\nAmen."
+      },
+      {
+        "title": "Prayer Before Sleep",
+        "text": "Jesus Christ, my God,\nI adore you and I thank you\nfor the many favors you have bestowed on me this day.\n\nI offer you my sleep and all the moments of this night,\nand I pray that you preserve me from sin.\nTherefore, I place myself in your most sacred side,\nand under the mantle of our Blessed Lady, my Mother.\nMay the holy Angels assist me and keep me in peace,\nand may your blessing be upon me.\n\nAmen."
+      },
+      {
+        "title": "Memorare",
+        "text": "Remember, O most gracious Virgin Mary,\nthat never was it known\nthat anyone who fled to thy protection,\nimplored thy help,\nor sought thy intercession,\nwas left unaided.\nInspired by this confidence\nI fly unto thee,\nO Virgin of virgins, my Mother.\nTo thee do I come,\nbefore thee I stand,\nsinful and sorrowful.\nO Mother of the Word Incarnate,\ndespise not my petitions,\nbut in thy mercy hear and answer me.\n\nAmen."
+      },
+      {
+        "title": "Prayer for Guidance",
+        "text": "Dear Heavenly Father,\nI come before You today\nknowing that You are my refuge and strength,\nmy ever-present help in times of trouble.\n\nLord,\nwhen I face challenges and uncertainties,\ngrant me the strength and courage to trust in You.\nHelp me to live in a way that reflects Your wisdom\nand guide my steps each day.\n\nIn Jesus' name,\nAmen."
+      },
+      {
+        "title": "Act of Contrition",
+        "text": "Oh God,\nI am sorry for my sins with all my heart.\nIn choosing to do wrong and failing to do good,\nI have sinned against you whom I should love above all things.\n\nI firmly intend, with your help of your grace,\nto do penance,\nto sin no more,\nand to avoid whatever leads me to sin.\n\nAmen."
+      }
+    ]
+  }
+}

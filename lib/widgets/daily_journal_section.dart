@@ -8,12 +8,18 @@ class DailyJournalSection extends StatelessWidget {
   final AppContent content;
   final TextEditingController controller;
   final DateTime selectedDate;
+  final VoidCallback onSave;
+  final bool isSaving;
+  final bool isLoading;
 
   const DailyJournalSection({
     super.key,
     required this.content,
     required this.controller,
     required this.selectedDate,
+    required this.onSave,
+    this.isSaving = false,
+    this.isLoading = false,
   });
 
   @override
@@ -48,6 +54,10 @@ class DailyJournalSection extends StatelessWidget {
                 ?.copyWith(color: Colors.black54),
           ),
           SizedBox(height: content.doubleAt(layout, 'largeGap')),
+          if (isLoading) ...<Widget>[
+            const LinearProgressIndicator(),
+            SizedBox(height: content.doubleAt(layout, 'mediumGap')),
+          ],
           TextField(
             controller: controller,
             maxLines: 10,
@@ -73,9 +83,17 @@ class DailyJournalSection extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: FilledButton.icon(
-              onPressed: () {},
-              icon: const Icon(Icons.save_rounded),
-              label: Text(content.stringAt(journal, 'saveLabel')),
+              onPressed: isSaving ? null : onSave,
+              icon: isSaving
+                  ? const SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : const Icon(Icons.save_rounded),
+              label: Text(
+                isSaving ? 'Saving...' : content.stringAt(journal, 'saveLabel'),
+              ),
             ),
           ),
         ],

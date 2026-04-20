@@ -1,29 +1,53 @@
 import 'package:flutter/material.dart';
 
 import 'models/app_content.dart';
+import 'models/daily_gospel.dart';
 import 'prayer_book_home_page.dart';
+import 'services/gospel_service.dart';
+import 'services/local_gospel_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   final AppContent content = await AppContent.load();
-  runApp(PrayerBookApp(content: content));
+
+  // 🔁 To swap to online: replace LocalGospelService()
+  // with your NetworkGospelService() — nothing else changes.
+  final GospelService gospelService = LocalGospelService();
+  final DailyGospel? todaysGospel = await gospelService.fetchGospel(
+    DateTime.now(),
+  );
+
+  runApp(
+    PrayerBookApp(
+      content: content,
+      gospelService: gospelService,
+      initialGospel: todaysGospel,
+    ),
+  );
 }
 
 class PrayerBookApp extends StatelessWidget {
   final AppContent content;
+  final GospelService gospelService;
+  final DailyGospel? initialGospel;
 
   const PrayerBookApp({
     super.key,
     required this.content,
+    required this.gospelService,
+    this.initialGospel, // ← nullable, no required
   });
 
   @override
   Widget build(BuildContext context) {
     final Map<String, dynamic> app = content.app;
-    final Map<String, dynamic> theme = Map<String, dynamic>.from(app['theme'] as Map);
+    final Map<String, dynamic> theme =
+        Map<String, dynamic>.from(app['theme'] as Map);
 
     return MaterialApp(
-      debugShowCheckedModeBanner: app['debugShowCheckedModeBanner'] as bool? ?? false,
+      debugShowCheckedModeBanner:
+          app['debugShowCheckedModeBanner'] as bool? ?? false,
       title: app['title'] as String,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -34,7 +58,11 @@ class PrayerBookApp extends StatelessWidget {
         ),
         useMaterial3: theme['useMaterial3'] as bool,
       ),
-      home: PrayerBookHomePage(content: content),
+      home: PrayerBookHomePage(
+        content: content,
+        gospelService: gospelService,
+        initialGospel: initialGospel,
+      ),
     );
   }
 }

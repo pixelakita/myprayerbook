@@ -19,7 +19,8 @@ class RosaryGuideSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final Map<String, dynamic> layout = content.layout;
     final Map<String, dynamic> interactiveRosary = content.interactiveRosary;
-    final List<String> steps = List<String>.from(rosaryGuide['steps'] as List<dynamic>);
+    final List<String> steps =
+        List<String>.from(rosaryGuide['steps'] as List<dynamic>);
 
     return AppCard(
       content: content,
@@ -33,7 +34,7 @@ class RosaryGuideSection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      '${rosaryGuide['weekday']} Guide',
+                      'Rosary Guide',
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     SizedBox(height: content.doubleAt(layout, 'smallGap') - 2),

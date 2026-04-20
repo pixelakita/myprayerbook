@@ -67,8 +67,8 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
   }
 
   List<String> _buildMysteryTitles(String title) {
-    final Map<String, dynamic> configuredMysteries =
-        Map<String, dynamic>.from(_interactive['mysteriesByTitleKeyword'] as Map);
+    final Map<String, dynamic> configuredMysteries = Map<String, dynamic>.from(
+        _interactive['mysteriesByTitleKeyword'] as Map);
 
     for (final MapEntry<String, dynamic> entry in configuredMysteries.entries) {
       if (entry.key == 'default') {
@@ -159,7 +159,9 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
     }) addBead,
     List<String> mysteryTitles,
   ) {
-    for (int mysteryIndex = 0; mysteryIndex < mysteryTitles.length; mysteryIndex++) {
+    for (int mysteryIndex = 0;
+        mysteryIndex < mysteryTitles.length;
+        mysteryIndex++) {
       final int mysteryNumber = mysteryIndex + 1;
       final String mysteryTitle = mysteryTitles[mysteryIndex];
       final String decadeGroup = 'Decade $mysteryNumber';
@@ -273,10 +275,12 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
     required double centerX,
     required double connectorStartY,
   }) {
-    final List<dynamic> offsets = _layout['openingChainOffsets'] as List<dynamic>;
+    final List<dynamic> offsets =
+        _layout['openingChainOffsets'] as List<dynamic>;
     return offsets
         .map(
-          (dynamic offset) => Offset(centerX, connectorStartY + (offset as num).toDouble()),
+          (dynamic offset) =>
+              Offset(centerX, connectorStartY + (offset as num).toDouble()),
         )
         .toList();
   }
@@ -297,7 +301,9 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
       final double angle = math.pi / 2 + (2 * math.pi * index / loopSegments);
       final double topBottomWeight = math.sin(angle).abs();
       final double adjustedRadiusX = radiusX *
-          (1 + widget.content.doubleAt(_layout, 'loopWidthWeightFactor') * topBottomWeight);
+          (1 +
+              widget.content.doubleAt(_layout, 'loopWidthWeightFactor') *
+                  topBottomWeight);
 
       points.add(
         Offset(
@@ -349,7 +355,11 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
           SizedBox(height: widget.content.doubleAt(_layout, 'mediumGap')),
           LinearProgressIndicator(value: progress),
           SizedBox(height: widget.content.doubleAt(_layout, 'extraLargeGap')),
-          Expanded(
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight:
+                  widget.content.doubleAt(_layout, 'minimumRosaryHeight'),
+            ),
             child: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
                 final Size rosarySize = Size(
@@ -357,7 +367,6 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
                   _getRosaryCanvasHeight(constraints),
                 );
                 final List<Offset> points = _buildRosaryPath(rosarySize);
-
                 return SizedBox(
                   width: rosarySize.width,
                   height: rosarySize.height,
@@ -368,8 +377,8 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
                           painter: _RosaryPathPainter(
                             content: widget.content,
                             points: points,
-                            openingChainCount:
-                                widget.content.intAt(_layout, 'openingChainCount'),
+                            openingChainCount: widget.content
+                                .intAt(_layout, 'openingChainCount'),
                           ),
                         ),
                       ),
@@ -493,7 +502,8 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
             const SizedBox(height: 6),
             Text(
               TemplateUtils.fill(
-                widget.content.stringAt(_interactive, 'currentPrayerProgressTemplate'),
+                widget.content
+                    .stringAt(_interactive, 'currentPrayerProgressTemplate'),
                 <String, Object>{
                   'current': currentPrayerIndex + 1,
                   'total': totalPrayers,
@@ -509,7 +519,8 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
           Text(
             _getPrayerText(currentPrayer),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  height: widget.content.doubleAt(_layout, 'rosaryPrimaryPrayerLineHeight'),
+                  height: widget.content
+                      .doubleAt(_layout, 'rosaryPrimaryPrayerLineHeight'),
                 ),
           ),
           _buildMysteryInfo(context, currentBead),
@@ -535,7 +546,8 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
         SizedBox(height: widget.content.doubleAt(_layout, 'mediumGap')),
         Container(
           width: double.infinity,
-          padding: EdgeInsets.all(widget.content.doubleAt(_layout, 'mediumGap')),
+          padding:
+              EdgeInsets.all(widget.content.doubleAt(_layout, 'mediumGap')),
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primaryContainer,
             borderRadius: BorderRadius.circular(
@@ -561,7 +573,8 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
             child: FilledButton.icon(
               onPressed: _isAtLastStep ? null : _goToNextBead,
               icon: const Icon(Icons.chevron_right_rounded),
-              label: Text(widget.content.stringAt(_interactive, 'nextBeadLabel')),
+              label:
+                  Text(widget.content.stringAt(_interactive, 'nextBeadLabel')),
             ),
           ),
           SizedBox(height: widget.content.doubleAt(_layout, 'mediumGap')),
@@ -571,7 +584,8 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
                 child: OutlinedButton.icon(
                   onPressed: isFirstStep ? null : _goToPreviousBead,
                   icon: const Icon(Icons.chevron_left_rounded),
-                  label: Text(widget.content.stringAt(_interactive, 'previousLabel')),
+                  label: Text(
+                      widget.content.stringAt(_interactive, 'previousLabel')),
                 ),
               ),
               SizedBox(width: widget.content.doubleAt(_layout, 'mediumGap')),
@@ -579,7 +593,8 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
                 child: OutlinedButton.icon(
                   onPressed: () => _goToBead(0),
                   icon: const Icon(Icons.restart_alt_rounded),
-                  label: Text(widget.content.stringAt(_interactive, 'startOverLabel')),
+                  label: Text(
+                      widget.content.stringAt(_interactive, 'startOverLabel')),
                 ),
               ),
             ],
@@ -618,19 +633,22 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
                     : widget.content.doubleAt(_layout, 'mediumGap'),
               ),
               child: ExpansionTile(
-                tilePadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
+                tilePadding:
+                    const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
                 childrenPadding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                     widget.content.doubleAt(_layout, 'tileBorderRadius'),
                   ),
-                  side: BorderSide(color: widget.content.colorAt('mutedBorder')),
+                  side:
+                      BorderSide(color: widget.content.colorAt('mutedBorder')),
                 ),
                 collapsedShape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                     widget.content.doubleAt(_layout, 'tileBorderRadius'),
                   ),
-                  side: BorderSide(color: widget.content.colorAt('mutedBorder')),
+                  side:
+                      BorderSide(color: widget.content.colorAt('mutedBorder')),
                 ),
                 backgroundColor: widget.content.colorAt('white'),
                 collapsedBackgroundColor: widget.content.colorAt('white'),
@@ -644,7 +662,8 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
                   Text(
                     prayer['text'] as String,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          height: widget.content.doubleAt(_layout, 'rosaryPrimaryPrayerLineHeight'),
+                          height: widget.content.doubleAt(
+                              _layout, 'rosaryPrimaryPrayerLineHeight'),
                         ),
                   ),
                 ],
@@ -681,14 +700,18 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
               final bool isActive = currentBead.mysteryIndex == index;
               final String label = TemplateUtils.fill(
                 widget.content.stringAt(_interactive, 'decadeTitleTemplate'),
-                <String, Object>{'number': index + 1, 'title': mysteries[index]},
+                <String, Object>{
+                  'number': index + 1,
+                  'title': mysteries[index]
+                },
               );
 
               return Container(
                 margin: EdgeInsets.only(
                   bottom: widget.content.doubleAt(_layout, 'mediumGap') - 2,
                 ),
-                padding: EdgeInsets.all(widget.content.doubleAt(_layout, 'mediumGap') + 2),
+                padding: EdgeInsets.all(
+                    widget.content.doubleAt(_layout, 'mediumGap') + 2),
                 decoration: BoxDecoration(
                   color: isActive
                       ? Theme.of(context).colorScheme.primaryContainer
@@ -726,7 +749,8 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 SizedBox(
-                  height: widget.content.doubleAt(_layout, 'minimumRosaryHeight'),
+                  height:
+                      widget.content.doubleAt(_layout, 'minimumRosaryHeight'),
                   child: rosaryPanel,
                 ),
                 SizedBox(height: widget.content.doubleAt(_layout, 'largeGap')),
@@ -774,7 +798,8 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
       appBar: AppBar(title: Text('${widget.weekday} Rosary')),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(widget.content.doubleAt(_layout, 'pagePadding')),
+          padding:
+              EdgeInsets.all(widget.content.doubleAt(_layout, 'pagePadding')),
           child: isWideLayout
               ? _buildWideLayout(
                   _buildRosaryPanel(context, currentBead, progress),
@@ -880,7 +905,8 @@ class _RosaryBeadWidget extends StatelessWidget {
             BoxShadow(
               color: content.colorAt('shadow'),
               blurRadius: content.doubleAt(content.layout, 'beadShadowBlur'),
-              offset: Offset(0, content.doubleAt(content.layout, 'beadShadowOffsetY')),
+              offset: Offset(
+                  0, content.doubleAt(content.layout, 'beadShadowOffsetY')),
             ),
           ],
         ),

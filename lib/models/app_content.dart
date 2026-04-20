@@ -21,6 +21,7 @@ class AppContent {
   Map<String, dynamic> get rosaryGuide => _map('rosaryGuide');
   Map<String, dynamic> get interactiveRosary => _map('interactiveRosary');
   Map<String, dynamic> get supplementalPrayers => _map('supplementalPrayers');
+  Map<String, dynamic> get gospelStrings => _map('gospelStrings'); // 🆕
 
   Map<String, dynamic> _map(String key) =>
       Map<String, dynamic>.from(raw[key] as Map<String, dynamic>);

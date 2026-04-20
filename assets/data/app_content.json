@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Prayer Book",
+    "title": "My Prayer Book",
     "debugShowCheckedModeBanner": false,
     "theme": {
       "seedColor": "0xFF8C6A43",
@@ -16,6 +16,8 @@
     "wideRosaryBreakpoint": 1050,
     "minimumRosaryHeight": 860,
     "mobileRosaryPanelHeight": 980,
+    "gospelCollapsedHeight": 180,
+    "gospelFadeHeight": 60,
     "openingChainCount": 7,
     "closingPrayerCount": 0,
     "loopCenterY": 300,
@@ -77,8 +79,8 @@
     "mutedText": "0x8A000000"
   },
   "calendar": {
-    "title": "Rosary Calendar",
-    "subtitle": "Tap a day to show the rosary guide for that date.",
+    "title": "Prayer Calendar",
+    "subtitle": "Tap a day to show the prayer guide for that date.",
     "weekdaysShort": [
       "Sun",
       "Mon",
@@ -293,25 +295,61 @@
     "title": "Supplemental Prayers",
     "items": [
       {
+        "title": "Prayer At Dawn",
+        "text": "Lord, \nas new day dawns \nsend the radiance of your light to shine in our hearts.\nGrant us wisdom in our decisions, \ncourage to rise from our mistakes, \ndevotion to our duties,\nand willingness to share and cooperate for the good of our families, \nour community and our country .\n\nGive us the grace  to love what is true, \nto respect others, \nand to serve with urgency.\n\npreserve us with false pride \nand selfish works\nand help us to live in peace \nwith one another.\n\nHelp us to remember that nothing is going to happen to us today\nthat together we can't handle.\n\nAbove all,\nmake us true to your teachings;\nkeep us free from error and sin.\n\nWe ask through our Lord Jesus Christ your Son, \nwho lives and reigns with you\nand the Holy Spirit,\none God forever and ever.\n\nAmen.",
+        "isVisibleInHomeScreen" : false
+      },
+      {
         "title": "Morning Offering",
-        "text": "O Jesus,\nthrough the Immaculate Heart of Mary,\nI offer You my prayers, works,\njoys and sufferings\nof this day for all the intentions\nof Your Sacred Heart,\nin union with the Holy Sacrifice of the Mass\nthroughout the world,\nin reparation for my sins,\nfor the intentions of all my relatives and friends,\nand in particular\nfor the intentions of the Holy Father.\n\nAmen."
+        "text": "O Jesus,\nthrough the Immaculate Heart of Mary,\nI offer You my prayers, works,\njoys and sufferings\nof this day for all the intentions\nof Your Sacred Heart,\nin union with the Holy Sacrifice of the Mass\nthroughout the world,\nin reparation for my sins,\nfor the intentions of all my relatives and friends,\nand in particular\nfor the intentions of the Holy Father.\n\nAmen.",
+        "isVisibleInHomeScreen" : true
+      },
+      {
+        "title": "Daily Offering",
+        "text": "Most Loving Father, \nI thank You for the gift of this new day. \nPlease help me to use it for Your honor and glory. \n\nBy your grace, \nmay all my thoughts, words, and actions \nbe pleasing today in Your sight.\n\nIn your great kindness, Lord Almighty \npreserve me on this day without sin \nand protect all Your people from evil. \nMay the ever blessed Virgin Mary, \nMother of our Savior, \nkeep us under her protection and by her prayers, \nand the aid of all Your saints, \nkeep us ever intent on doing good for Your sake. \n\nWe ask these blessing through Your son, Jesus Christ , \nour redeemer, \n\nAmen.",
+        "isVisibleInHomeScreen" : false
       },
       {
         "title": "Prayer Before Sleep",
-        "text": "Jesus Christ, my God,\nI adore you and I thank you\nfor the many favors you have bestowed on me this day.\n\nI offer you my sleep and all the moments of this night,\nand I pray that you preserve me from sin.\nTherefore, I place myself in your most sacred side,\nand under the mantle of our Blessed Lady, my Mother.\nMay the holy Angels assist me and keep me in peace,\nand may your blessing be upon me.\n\nAmen."
+        "text": "Jesus Christ, my God,\nI adore you and I thank you\nfor the many favors you have bestowed on me this day.\n\nI offer you my sleep and all the moments of this night,\nand I pray that you preserve me from sin.\nTherefore, I place myself in your most sacred side,\nand under the mantle of our Blessed Lady, my Mother.\nMay the holy Angels assist me and keep me in peace,\nand may your blessing be upon me.\n\nAmen.",
+        "isVisibleInHomeScreen" : true
       },
       {
         "title": "Memorare",
-        "text": "Remember, O most gracious Virgin Mary,\nthat never was it known\nthat anyone who fled to thy protection,\nimplored thy help,\nor sought thy intercession,\nwas left unaided.\nInspired by this confidence\nI fly unto thee,\nO Virgin of virgins, my Mother.\nTo thee do I come,\nbefore thee I stand,\nsinful and sorrowful.\nO Mother of the Word Incarnate,\ndespise not my petitions,\nbut in thy mercy hear and answer me.\n\nAmen."
+        "text": "Remember, O most gracious Virgin Mary,\nthat never was it known\nthat anyone who fled to thy protection,\nimplored thy help,\nor sought thy intercession,\nwas left unaided.\nInspired by this confidence\nI fly unto thee,\nO Virgin of virgins, my Mother.\nTo thee do I come,\nbefore thee I stand,\nsinful and sorrowful.\nO Mother of the Word Incarnate,\ndespise not my petitions,\nbut in thy mercy hear and answer me.\n\nAmen.",
+        "isVisibleInHomeScreen" : true
       },
       {
         "title": "Prayer for Guidance",
-        "text": "Dear Heavenly Father,\nI come before You today\nknowing that You are my refuge and strength,\nmy ever-present help in times of trouble.\n\nLord,\nwhen I face challenges and uncertainties,\ngrant me the strength and courage to trust in You.\nHelp me to live in a way that reflects Your wisdom\nand guide my steps each day.\n\nIn Jesus' name,\nAmen."
+        "text": "Dear Heavenly Father,\nI come before You today\nknowing that You are my refuge and strength,\nmy ever-present help in times of trouble.\n\nLord,\nwhen I face challenges and uncertainties,\ngrant me the strength and courage to trust in You.\nHelp me to live in a way that reflects Your wisdom\nand guide my steps each day.\n\nIn Jesus' name,\nAmen.",
+        "isVisibleInHomeScreen" : false
       },
       {
         "title": "Act of Contrition",
-        "text": "Oh God,\nI am sorry for my sins with all my heart.\nIn choosing to do wrong and failing to do good,\nI have sinned against you whom I should love above all things.\n\nI firmly intend, with your help of your grace,\nto do penance,\nto sin no more,\nand to avoid whatever leads me to sin.\n\nAmen."
+        "text": "Oh God,\nI am sorry for my sins with all my heart.\nIn choosing to do wrong and failing to do good,\nI have sinned against you whom I should love above all things.\n\nI firmly intend, with your help of your grace,\nto do penance,\nto sin no more,\nand to avoid whatever leads me to sin.\n\nAmen.",
+        "isVisibleInHomeScreen" : true
+      },
+      {
+        "title": "Act of Faith",
+        "text": "O my God, I firmly believe\nthat you are one God in three divine Persons,\nFather, Son, and Holy Spirit.\nI believe that your divine Son became man\nand died for our sins and that he will come\nto judge the living and the dead.\nI believe these and all the truths\nwhich the Holy Catholic Church teaches\nbecause you have revealed them\nwho are eternal truth and wisdom,\nwho can neither deceive nor be deceived.\nIn this faith I intend to live and die.\n\nAmen.",
+        "isVisibleInHomeScreen" : false
+      },
+      {
+        "title": "Act of Hope",
+        "text": "O Lord God,\nI hope by your grace for the pardon\nof all my sins\nand after life here to gain eternal happiness\nbecause you have promised it\nwho are infinitely powerful, faithful, kind,\nand merciful.\nIn this hope I intend to live and die.\n\nAmen.",
+        "isVisibleInHomeScreen" : false
+      },
+      {
+        "title": "Act of Love",
+        "text": "O Lord God, I love you above all things\nand I love my neighbor for your sake\nbecause you are the highest, infinite and perfect\ngood, worthy of all my love.\nIn this love I intend to live and die.\n\nAmen.",
+        "isVisibleInHomeScreen" : false
       }
     ]
+  },
+  "gospelStrings": {
+    "title": "Today's Gospel",
+    "dateTemplate": "{month}/{day}/{year}",
+    "notFound": "No gospel reading found for this date.",
+    "readLabel": "Read Full Gospel"
   }
 }

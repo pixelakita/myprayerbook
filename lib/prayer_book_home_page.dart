@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
 
 import 'models/app_content.dart';
+import 'models/daily_gospel.dart';
+import 'prayer_book_home_page.dart';
 import 'screens/interactive_rosary_screen.dart';
+import 'screens/supplemental_prayers_screen.dart';
+import 'services/gospel_service.dart';
 import 'widgets/calendar_section.dart';
 import 'widgets/daily_journal_section.dart';
+import 'widgets/gospel_section.dart';
 import 'widgets/rosary_guide_section.dart';
 import 'widgets/supplemental_prayers_section.dart';
 import 'services/journal_storage_service.dart';
 
 class PrayerBookHomePage extends StatefulWidget {
   final AppContent content;
+  final GospelService gospelService;
+  final DailyGospel? initialGospel;
 
   const PrayerBookHomePage({
     super.key,
     required this.content,
+    required this.gospelService,
+    required this.initialGospel,
   });
 
   @override
@@ -29,6 +38,9 @@ class _PrayerBookHomePageState extends State<PrayerBookHomePage> {
   bool isJournalLoading = false;
   bool isJournalSaving = false;
 
+  DailyGospel? _currentGospel;
+  bool _isGospelLoading = false;
+
   @override
   void initState() {
     super.initState();
@@ -36,6 +48,7 @@ class _PrayerBookHomePageState extends State<PrayerBookHomePage> {
     final DateTime now = DateTime.now();
     displayedMonth = DateTime(now.year, now.month);
     selectedDate = now;
+    _currentGospel = widget.initialGospel;
 
     _loadJournalForSelectedDate();
   }
@@ -78,7 +91,31 @@ class _PrayerBookHomePageState extends State<PrayerBookHomePage> {
 
   DateTime previousMonth(DateTime month) =>
       DateTime(month.year, month.month - 1);
+
   DateTime nextMonth(DateTime month) => DateTime(month.year, month.month + 1);
+
+  Future<void> _loadGospelForSelectedDate() async {
+    setState(() => _isGospelLoading = true);
+
+    try {
+      final DailyGospel? gospel =
+          await widget.gospelService.fetchGospel(selectedDate);
+
+      if (!mounted) return;
+
+      setState(() => _currentGospel = gospel);
+    } catch (e, st) {
+      debugPrint('Failed to load gospel: $e');
+      debugPrintStack(stackTrace: st);
+
+      if (!mounted) return;
+
+      setState(() => _currentGospel = null);
+    } finally {
+      if (!mounted) return;
+      setState(() => _isGospelLoading = false);
+    }
+  }
 
   Future<void> _loadJournalForSelectedDate() async {
     setState(() {
@@ -105,7 +142,7 @@ class _PrayerBookHomePageState extends State<PrayerBookHomePage> {
       });
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to load journal entry.')),
+        const SnackBar(content: Text('Failed to load journal entry.')),
       );
     } finally {
       if (!mounted) return;
@@ -150,6 +187,37 @@ class _PrayerBookHomePageState extends State<PrayerBookHomePage> {
     }
   }
 
+  Future<void> _onDateSelected(DateTime date) async {
+    setState(() {
+      selectedDate = date;
+      displayedMonth = DateTime(date.year, date.month);
+    });
+
+    await Future.wait(<Future<void>>[
+      _loadJournalForSelectedDate(),
+      _loadGospelForSelectedDate(),
+    ]);
+  }
+
+  void _openSupplementalPrayersScreen() {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => SupplementalPrayersScreen(
+          content: widget.content,
+          prayers: supplementalPrayers,
+        ),
+      ),
+    );
+  }
+
+  void _handleMenuSelection(String value) {
+    switch (value) {
+      case 'prayer_list':
+        _openSupplementalPrayersScreen();
+        break;
+    }
+  }
+
   @override
   void dispose() {
     journalController.dispose();
@@ -159,13 +227,26 @@ class _PrayerBookHomePageState extends State<PrayerBookHomePage> {
   @override
   Widget build(BuildContext context) {
     final Map<String, dynamic> layout = widget.content.layout;
-    final Map<String, dynamic> app = widget.content.app;
     final Map<String, dynamic> rosaryGuide = getRosaryGuide(selectedDate);
     final List<String> steps =
         List<String>.from(rosaryGuide['steps'] as List<dynamic>);
 
     return Scaffold(
-      appBar: AppBar(title: Text(app['title'] as String)),
+      appBar: AppBar(
+        title: const Text('My Prayerbook'),
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.menu_rounded),
+            onSelected: _handleMenuSelection,
+            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+              const PopupMenuItem<String>(
+                value: 'prayer_list',
+                child: Text('Prayer List'),
+              ),
+            ],
+          ),
+        ],
+      ),
       body: SafeArea(
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
@@ -174,152 +255,128 @@ class _PrayerBookHomePageState extends State<PrayerBookHomePage> {
 
             return SingleChildScrollView(
               padding: EdgeInsets.all(
-                  widget.content.doubleAt(layout, 'pagePadding')),
+                widget.content.doubleAt(layout, 'pagePadding'),
+              ),
               child: isWide
-                  ? Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Expanded(
-                          flex: 5,
-                          child: Column(
-                            children: <Widget>[
-                              CalendarSection(
-                                content: widget.content,
-                                displayedMonth: displayedMonth,
-                                selectedDate: selectedDate,
-                                onPreviousMonth: () {
-                                  setState(() => displayedMonth =
-                                      previousMonth(displayedMonth));
-                                },
-                                onNextMonth: () {
-                                  setState(() => displayedMonth =
-                                      nextMonth(displayedMonth));
-                                },
-                                onDateSelected: (date) async {
-                                  setState(() {
-                                    selectedDate = date;
-                                    displayedMonth =
-                                        DateTime(date.year, date.month);
-                                  });
-
-                                  await _loadJournalForSelectedDate();
-                                },
-                              ),
-                              SizedBox(
-                                  height: widget.content
-                                      .doubleAt(layout, 'largeGap')),
-                              RosaryGuideSection(
-                                content: widget.content,
-                                rosaryGuide: rosaryGuide,
-                                onOpenInteractiveRosary: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute<void>(
-                                      builder: (_) => InteractiveRosaryScreen(
-                                        content: widget.content,
-                                        title: rosaryGuide['title'] as String,
-                                        weekday:
-                                            rosaryGuide['weekday'] as String,
-                                        steps: steps,
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                            width: widget.content.doubleAt(layout, 'largeGap')),
-                        Expanded(
-                          flex: 4,
-                          child: Column(
-                            children: <Widget>[
-                              SupplementalPrayersSection(
-                                content: widget.content,
-                                prayers: supplementalPrayers,
-                              ),
-                              SizedBox(
-                                  height: widget.content
-                                      .doubleAt(layout, 'largeGap')),
-                              DailyJournalSection(
-                                content: widget.content,
-                                controller: journalController,
-                                selectedDate: selectedDate,
-                                onSave: _saveJournalForSelectedDate,
-                                isSaving: isJournalSaving,
-                                isLoading: isJournalLoading,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    )
-                  : Column(
-                      children: <Widget>[
-                        CalendarSection(
-                          content: widget.content,
-                          displayedMonth: displayedMonth,
-                          selectedDate: selectedDate,
-                          onPreviousMonth: () {
-                            setState(() =>
-                                displayedMonth = previousMonth(displayedMonth));
-                          },
-                          onNextMonth: () {
-                            setState(() =>
-                                displayedMonth = nextMonth(displayedMonth));
-                          },
-                          onDateSelected: (date) async {
-                            setState(() {
-                              selectedDate = date;
-                              displayedMonth = DateTime(date.year, date.month);
-                            });
-
-                            await _loadJournalForSelectedDate();
-                          },
-                        ),
-                        SizedBox(
-                            height:
-                                widget.content.doubleAt(layout, 'largeGap')),
-                        RosaryGuideSection(
-                          content: widget.content,
-                          rosaryGuide: rosaryGuide,
-                          onOpenInteractiveRosary: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute<void>(
-                                builder: (_) => InteractiveRosaryScreen(
-                                  content: widget.content,
-                                  title: rosaryGuide['title'] as String,
-                                  weekday: rosaryGuide['weekday'] as String,
-                                  steps: steps,
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                        SizedBox(
-                            height:
-                                widget.content.doubleAt(layout, 'largeGap')),
-                        SupplementalPrayersSection(
-                          content: widget.content,
-                          prayers: supplementalPrayers,
-                        ),
-                        SizedBox(
-                            height:
-                                widget.content.doubleAt(layout, 'largeGap')),
-                        DailyJournalSection(
-                          content: widget.content,
-                          controller: journalController,
-                          selectedDate: selectedDate,
-                          onSave: _saveJournalForSelectedDate,
-                          isSaving: isJournalSaving,
-                          isLoading: isJournalLoading,
-                        ),
-                      ],
-                    ),
+                  ? _buildWideLayout(layout, rosaryGuide, steps)
+                  : _buildMobileLayout(layout, rosaryGuide, steps),
             );
           },
         ),
       ),
+    );
+  }
+
+  Widget _buildCalendarSection(Map<String, dynamic> layout) {
+    return CalendarSection(
+      content: widget.content,
+      displayedMonth: displayedMonth,
+      selectedDate: selectedDate,
+      onPreviousMonth: () {
+        setState(() => displayedMonth = previousMonth(displayedMonth));
+      },
+      onNextMonth: () {
+        setState(() => displayedMonth = nextMonth(displayedMonth));
+      },
+      onDateSelected: _onDateSelected,
+    );
+  }
+
+  Widget _buildRosarySection(
+    Map<String, dynamic> layout,
+    Map<String, dynamic> rosaryGuide,
+    List<String> steps,
+  ) {
+    return RosaryGuideSection(
+      content: widget.content,
+      rosaryGuide: rosaryGuide,
+      onOpenInteractiveRosary: () {
+        Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => InteractiveRosaryScreen(
+              content: widget.content,
+              title: rosaryGuide['title'] as String,
+              weekday: rosaryGuide['weekday'] as String,
+              steps: steps,
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildGospelSection() {
+    return GospelSection(
+      content: widget.content,
+      gospel: _currentGospel,
+      selectedDate: selectedDate,
+      isLoading: _isGospelLoading,
+    );
+  }
+
+  Widget _buildJournalSection() {
+    return DailyJournalSection(
+      content: widget.content,
+      controller: journalController,
+      selectedDate: selectedDate,
+      onSave: _saveJournalForSelectedDate,
+      isSaving: isJournalSaving,
+      isLoading: isJournalLoading,
+    );
+  }
+
+  Widget _buildWideLayout(
+    Map<String, dynamic> layout,
+    Map<String, dynamic> rosaryGuide,
+    List<String> steps,
+  ) {
+    final double gap = widget.content.doubleAt(layout, 'largeGap');
+
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Expanded(
+          flex: 5,
+          child: Column(
+            children: <Widget>[
+              _buildCalendarSection(layout),
+              SizedBox(height: gap),
+              _buildRosarySection(layout, rosaryGuide, steps),
+            ],
+          ),
+        ),
+        SizedBox(width: gap),
+        Expanded(
+          flex: 4,
+          child: Column(
+            children: <Widget>[
+              _buildGospelSection(),
+              SizedBox(height: gap),
+              _buildJournalSection(),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildMobileLayout(
+    Map<String, dynamic> layout,
+    Map<String, dynamic> rosaryGuide,
+    List<String> steps,
+  ) {
+    final double gap = widget.content.doubleAt(layout, 'largeGap');
+
+    return Column(
+      children: <Widget>[
+        _buildCalendarSection(layout),
+        SizedBox(height: gap),
+        _buildRosarySection(layout, rosaryGuide, steps),
+        SizedBox(height: gap),
+        _buildGospelSection(),
+        SizedBox(height: gap),
+        _buildJournalSection(),
+      ],
     );
   }
 }

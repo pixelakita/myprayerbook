@@ -12,6 +12,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/data/app_content.json
+    - assets/data/gospels.json
 
 dev_dependencies:
   flutter_test:

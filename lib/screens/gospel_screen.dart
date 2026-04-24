@@ -35,13 +35,15 @@ class GospelScreen extends StatelessWidget {
               SizedBox(height: content.doubleAt(layout, 'mediumGap')),
               _buildReferenceChip(theme, layout),
               SizedBox(height: content.doubleAt(layout, 'largeGap')),
-              Text(
-                gospel.title,
-                style: theme.textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
+              if (gospel.hasDistinctTitle) ...<Widget>[
+                Text(
+                  gospel.title,
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
-              SizedBox(height: content.doubleAt(layout, 'largeGap')),
+                SizedBox(height: content.doubleAt(layout, 'largeGap')),
+              ],
               Container(
                 width: double.infinity,
                 padding:

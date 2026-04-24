@@ -4,16 +4,16 @@ import 'models/app_content.dart';
 import 'models/daily_gospel.dart';
 import 'prayer_book_home_page.dart';
 import 'services/gospel_service.dart';
-import 'services/local_gospel_service.dart';
+import 'services/remote_gospel_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final AppContent content = await AppContent.load();
 
-  // 🔁 To swap to online: replace LocalGospelService()
-  // with your NetworkGospelService() — nothing else changes.
-  final GospelService gospelService = LocalGospelService();
+  final GospelService gospelService = RemoteGospelService(
+    readingsUrl: 'http://myprayerbook.pixelakita.co/gospels.json',
+  );
   final DailyGospel? todaysGospel = await gospelService.fetchGospel(
     DateTime.now(),
   );

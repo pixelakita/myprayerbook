@@ -329,9 +329,12 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
   double _getRosaryCanvasHeight(BoxConstraints constraints) {
     final double minimumHeight =
         widget.content.doubleAt(_layout, 'minimumRosaryHeight');
-    return constraints.maxHeight > minimumHeight
-        ? constraints.maxHeight
-        : minimumHeight;
+
+    if (!constraints.hasBoundedHeight || constraints.maxHeight.isInfinite) {
+      return minimumHeight;
+    }
+
+    return math.max(minimumHeight, constraints.maxHeight);
   }
 
   String _getPrayerText(String prayerName) {
@@ -436,8 +439,9 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
 
   List<Widget> _buildPositionedBeads(List<Offset> points) {
     final List<Widget> widgets = <Widget>[];
+    final int drawableCount = math.min(points.length, beads.length);
 
-    for (int i = points.length - 1; i >= 0; i--) {
+    for (int i = drawableCount - 1; i >= 0; i--) {
       final RosaryBeadData bead = beads[i];
       if (!bead.isDrawable) {
         continue;

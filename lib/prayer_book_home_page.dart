@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'models/app_content.dart';
 import 'models/daily_gospel.dart';
-import 'prayer_book_home_page.dart';
 import 'screens/interactive_rosary_screen.dart';
 import 'screens/supplemental_prayers_screen.dart';
 import 'services/gospel_service.dart';

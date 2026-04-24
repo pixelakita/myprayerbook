@@ -68,8 +68,10 @@ class GospelSection extends StatelessWidget {
           else ...<Widget>[
             _buildReferenceChip(theme, layout),
             SizedBox(height: content.doubleAt(layout, 'largeGap')),
-            _buildGospelTitle(theme),
-            SizedBox(height: content.doubleAt(layout, 'mediumGap')),
+            if (gospel!.hasDistinctTitle) ...<Widget>[
+              _buildGospelTitle(theme),
+              SizedBox(height: content.doubleAt(layout, 'mediumGap')),
+            ],
             _buildPreviewText(theme, layout),
             SizedBox(height: content.doubleAt(layout, 'mediumGap')),
             _buildReadButton(context, theme, gospelStrings, layout),

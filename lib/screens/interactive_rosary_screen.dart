@@ -334,7 +334,9 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
       return minimumHeight;
     }
 
-    return math.max(minimumHeight, constraints.maxHeight);
+    return constraints.maxHeight > minimumHeight
+        ? constraints.maxHeight
+        : minimumHeight;
   }
 
   String _getPrayerText(String prayerName) {
@@ -780,10 +782,7 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
         children: <Widget>[
           infoPanel,
           SizedBox(height: widget.content.doubleAt(_layout, 'largeGap')),
-          SizedBox(
-            height: widget.content.doubleAt(_layout, 'mobileRosaryPanelHeight'),
-            child: rosaryPanel,
-          ),
+          rosaryPanel,
           SizedBox(height: widget.content.doubleAt(_layout, 'largeGap')),
           additionalPrayersCard,
         ],

@@ -399,8 +399,8 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
     );
   }
 
-  Widget _buildRosaryHeader(BuildContext context, RosaryBeadData currentBead) {
-    final String progressText = TemplateUtils.fill(
+  String _getProgressText(RosaryBeadData currentBead) {
+    return TemplateUtils.fill(
       widget.content.stringAt(_interactive, 'beadProgressTemplate'),
       <String, Object>{
         'group': currentBead.group,
@@ -408,26 +408,17 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
         'total': beads.length,
       },
     );
+  }
 
+  Widget _buildRosaryHeader(BuildContext context, RosaryBeadData currentBead) {
     return Row(
       children: <Widget>[
         Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                widget.title,
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-              const SizedBox(height: 6),
-              Text(
-                progressText,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(color: Colors.black54),
-              ),
-            ],
+          child: Text(
+            _getProgressText(currentBead),
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
           ),
         ),
         IconButton(
@@ -470,16 +461,15 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
     return widgets;
   }
 
-  Widget _buildInfoPanel(BuildContext context, RosaryBeadData currentBead) {
+  Widget _buildPrayerDetailsPanel(
+    BuildContext context,
+    RosaryBeadData currentBead,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         _buildCurrentPrayerCard(context, currentBead),
-        SizedBox(height: widget.content.doubleAt(_layout, 'largeGap')),
-        _buildControlsCard(),
-        SizedBox(height: widget.content.doubleAt(_layout, 'largeGap')),
-        _buildMysteryGroupsCard(context, currentBead),
       ],
     );
   }
@@ -566,14 +556,26 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
     );
   }
 
-  Widget _buildControlsCard() {
+  Widget _buildControlsCard(
+    BuildContext context,
+    RosaryBeadData currentBead,
+  ) {
     final bool isFirstStep = currentBeadIndex == 0 && currentPrayerIndex == 0;
 
     return AppCard(
       content: widget.content,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
+          Text(
+            _getProgressText(currentBead),
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium
+                ?.copyWith(color: Colors.black54),
+          ),
+          SizedBox(height: widget.content.doubleAt(_layout, 'mediumGap')),
           SizedBox(
             width: double.infinity,
             child: FilledButton.icon(
@@ -692,10 +694,18 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
-            widget.content.stringAt(_interactive, 'mysteryGroupsTitle'),
+            widget.title,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            widget.content.stringAt(_interactive, 'mysteryGroupsTitle'),
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium
+                ?.copyWith(color: Colors.black54),
           ),
           SizedBox(height: widget.content.doubleAt(_layout, 'mediumGap')),
           ListView.builder(
@@ -741,48 +751,70 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
   }
 
   Widget _buildWideLayout(
+    Widget controlsCard,
+    Widget mysteryGroupsCard,
     Widget rosaryPanel,
-    Widget infoPanel,
+    Widget prayerDetailsPanel,
     Widget additionalPrayersCard,
   ) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
+        mysteryGroupsCard,
+        SizedBox(height: widget.content.doubleAt(_layout, 'largeGap')),
         Expanded(
-          flex: 6,
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                SizedBox(
-                  height:
-                      widget.content.doubleAt(_layout, 'minimumRosaryHeight'),
-                  child: rosaryPanel,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Expanded(
+                flex: 6,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      rosaryPanel,
+                      SizedBox(
+                        height: widget.content.doubleAt(_layout, 'largeGap'),
+                      ),
+                      controlsCard,
+                      SizedBox(
+                        height: widget.content.doubleAt(_layout, 'largeGap'),
+                      ),
+                      additionalPrayersCard,
+                    ],
+                  ),
                 ),
-                SizedBox(height: widget.content.doubleAt(_layout, 'largeGap')),
-                additionalPrayersCard,
-              ],
-            ),
+              ),
+              SizedBox(width: widget.content.doubleAt(_layout, 'largeGap')),
+              Expanded(
+                flex: 4,
+                child: SingleChildScrollView(child: prayerDetailsPanel),
+              ),
+            ],
           ),
         ),
-        SizedBox(width: widget.content.doubleAt(_layout, 'largeGap')),
-        Expanded(flex: 4, child: SingleChildScrollView(child: infoPanel)),
       ],
     );
   }
 
   Widget _buildMobileLayout(
+    Widget controlsCard,
+    Widget mysteryGroupsCard,
     Widget rosaryPanel,
-    Widget infoPanel,
+    Widget prayerDetailsPanel,
     Widget additionalPrayersCard,
   ) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          infoPanel,
+          mysteryGroupsCard,
           SizedBox(height: widget.content.doubleAt(_layout, 'largeGap')),
           rosaryPanel,
+          SizedBox(height: widget.content.doubleAt(_layout, 'largeGap')),
+          controlsCard,
+          SizedBox(height: widget.content.doubleAt(_layout, 'largeGap')),
+          prayerDetailsPanel,
           SizedBox(height: widget.content.doubleAt(_layout, 'largeGap')),
           additionalPrayersCard,
         ],
@@ -797,6 +829,25 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
     final bool isWideLayout = MediaQuery.of(context).size.width >=
         widget.content.doubleAt(_layout, 'wideRosaryBreakpoint');
 
+    final Widget rosaryPanel = _buildRosaryPanel(
+      context,
+      currentBead,
+      progress,
+    );
+    final Widget controlsCard = _buildControlsCard(
+      context,
+      currentBead,
+    );
+    final Widget mysteryGroupsCard = _buildMysteryGroupsCard(
+      context,
+      currentBead,
+    );
+    final Widget prayerDetailsPanel = _buildPrayerDetailsPanel(
+      context,
+      currentBead,
+    );
+    final Widget additionalPrayersCard = _buildAdditionalPrayersCard(context);
+
     return Scaffold(
       appBar: AppBar(title: Text('${widget.weekday} Rosary')),
       body: SafeArea(
@@ -805,14 +856,18 @@ class _InteractiveRosaryScreenState extends State<InteractiveRosaryScreen> {
               EdgeInsets.all(widget.content.doubleAt(_layout, 'pagePadding')),
           child: isWideLayout
               ? _buildWideLayout(
-                  _buildRosaryPanel(context, currentBead, progress),
-                  _buildInfoPanel(context, currentBead),
-                  _buildAdditionalPrayersCard(context),
+                  controlsCard,
+                  mysteryGroupsCard,
+                  rosaryPanel,
+                  prayerDetailsPanel,
+                  additionalPrayersCard,
                 )
               : _buildMobileLayout(
-                  _buildRosaryPanel(context, currentBead, progress),
-                  _buildInfoPanel(context, currentBead),
-                  _buildAdditionalPrayersCard(context),
+                  controlsCard,
+                  mysteryGroupsCard,
+                  rosaryPanel,
+                  prayerDetailsPanel,
+                  additionalPrayersCard,
                 ),
         ),
       ),

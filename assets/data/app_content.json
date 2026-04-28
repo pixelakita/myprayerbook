@@ -165,7 +165,7 @@
   "interactiveRosary": {
     "resetTooltip": "Reset",
     "openInteractiveRosaryTooltip": "Open interactive rosary",
-    "additionalPrayersTitle": "Additional Prayers",
+    "additionalPrayersTitle": "All Prayers",
     "mysteryGroupsTitle": "Mystery Groups",
     "nextBeadLabel": "Next Bead",
     "previousLabel": "Previous",
@@ -218,6 +218,30 @@
       ]
     },
     "additionalPrayers": [
+      {
+        "title": "Apostles’ Creed",
+        "text": "I believe in God,\nthe Father almighty,\nCreator of heaven and earth,\nand in Jesus Christ, his only Son, our Lord,\nwho was conceived by the power of the Holy Spirit,\nborn of the Virgin Mary,\nsuffered under Pontius Pilate,\nwas crucified, died and was buried;\nhe descended into hell;\non the third day he rose again from the dead;\nhe ascended into heaven,\nand is seated at the right hand of God the Father almighty;\nfrom there he will come to judge the living and the dead.\n\nI believe in the Holy Spirit,\nthe holy catholic Church,\nthe communion of saints,\nthe forgiveness of sins,\nthe resurrection of the body,\nand life everlasting.\n\nAmen."
+      },
+      {
+        "title": "Our Father",
+        "text": "Our Father, who art in heaven,\nhallowed be thy name;\nthy kingdom come; thy will be done;\non earth as it is in heaven.\n\nGive us this day our daily bread.\nAnd forgive us our trespasses,\nas we forgive those who trespass against us.\nAnd lead us not into temptation;\nbut deliver us from evil.\n\nAmen."
+      },
+      {
+        "title": "Hail Mary",
+        "text": "Hail Mary, full of grace,\nthe Lord is with you.\nBlessed are you among women,\nand blessed is the fruit of thy womb, Jesus.\n\nHoly Mary, Mother of God,\npray for us sinners,\nnow and at the hour of our death.\n\nAmen."
+      },
+      {
+        "title": "Glory Be",
+        "text": "Glory be to the Father,\nand to the Son,\nand to the Holy Spirit,\nas it was in the beginning,\nis now,\nand ever shall be,\nworld without end.\n\nAmen"
+      },
+      {
+        "title": "Fatima's Prayer",
+        "text": "O my Jesus,\nforgive us our sins,\nsave us from the fires of hell;\nand lead all souls into heaven,\nespecially those in most need of Thy mercy."
+      },
+      {
+        "title": "Hail Holy Queen",
+        "text": "Hail, Holy Queen, Mother of Mercy,\nhail, our life, our sweetness and our hope.\nTo thee do we cry,\npoor banished children of Eve.\nTo thee do we send up our sighs,\nmourning and weeping in this valley of tears.\nTurn then, most gracious advocate,\nthine eyes of mercy toward us,\nand after this our exile\nshow unto us the blessed fruit of thy womb, Jesus.\nO clement, O loving,\nO sweet Virgin Mary.\n\nPray for us O holy mother of God,\nthat we may be made worthy of the promises of Christ.\n\nLet us pray.\n\nO God,\nwhose only begotten Son,\nby His life, death, and resurrection,\nhas purchased for us the rewards of eternal life,\ngrant, we beseech Thee, that\nmeditating upon these mysteries of the Most Holy Rosary nof the Blessed Virgin Mary,\nwe may imitate what they contain\nand obtain what they promise,\nthrough the same Christ Our Lord.\n\nAmen."
+      },
       {
         "title": "Litany of the Blessed Virgin Mary",
         "text": "Lord, have mercy on us.\nChrist, have mercy on us.\n\nLord, have mercy on us.\nChrist hear us.\n\nChrist, graciously hear us.\n\nGod the Father of heaven, Have mercy on us.\nGod the Son, Redeemer of the world, Have mercy on us.\nGod the Holy Spirit, Have mercy on us.\nHoly Trinity, one God, Have mercy on us.\n\nHoly Mary, Pray for us. (repeat after each line)\nHoly Mother of God,\nHoly Virgin of virgins,\n\nMother of Christ,\nMother of the Church,\nMother of Mercy,\nMother of Divine Grace,\nMother of Hope,\nMother Most Pure,\nMother Most Chaste,\nMother Inviolate,\nMother Undefiled,\nMother Most Amiable,\nMother Most Admirable,\nMother of Good Counsel,\nMother of our Creator,\nMother of our Savior,\n\nVirgin Most Prudent,\nVirgin Most Venerable,\nVirgin Most Renowned,\nVirgin Most Powerful,\nVirgin Most Merciful,\nVirgin Most Faithful,\n\nMirror of Justice,\nSeat of Wisdom,\nCause of Our Joy,\nSpiritual Vessel,\nVessel of Honor,\nSingular Vessel of Devotion,\nMystical Rose,\nTower of David,\nTower of Ivory,\nHouse of Gold,\nArk of the Covenant,\nGate of Heaven,\nMorning Star,\n\nHealth of the Sick,\nRefuge of Sinners,\nSolace of Migrants,\nComforter of the afflicted,\nHelp of Christians,\n\nQueen of Angels,\nQueen of Patriarchs,\nQueen of Prophets,\nQueen of Apostles,\nQueen of Martyrs,\nQueen of Confessors,\nQueen of Virgins,\nQueen of all Saints,\nQueen conceived without Original Sin,\nQueen assumed into heaven,\nQueen of the Most Holy Rosary,\nQueen of Families,\nQueen of Peace,\n\nLamb of God, you take away the sins of the world, Spare us, O Lord.\nLamb of God, you take away the sins of the world, Graciously hear us, O Lord.\nLamb of God, you take away the sins of the world, Have mercy on us.\n\nV. Pray for us, O holy Mother of God,\nR. That we may be made worthy of the promises of Christ.\n\nLet us pray, Grant, we beseech you, O Lord God, that we your servants may enjoy lasting health of mind and body and, by the glorious intercession of Blessed Mary, ever Virgin, may we be delivered from present sorrow to delight in joy eternal. Through Christ our Lord.\n\nAmen."
@@ -297,52 +321,52 @@
       {
         "title": "Prayer At Dawn",
         "text": "Lord, \nas new day dawns \nsend the radiance of your light to shine in our hearts.\nGrant us wisdom in our decisions, \ncourage to rise from our mistakes, \ndevotion to our duties,\nand willingness to share and cooperate for the good of our families, \nour community and our country .\n\nGive us the grace  to love what is true, \nto respect others, \nand to serve with urgency.\n\npreserve us with false pride \nand selfish works\nand help us to live in peace \nwith one another.\n\nHelp us to remember that nothing is going to happen to us today\nthat together we can't handle.\n\nAbove all,\nmake us true to your teachings;\nkeep us free from error and sin.\n\nWe ask through our Lord Jesus Christ your Son, \nwho lives and reigns with you\nand the Holy Spirit,\none God forever and ever.\n\nAmen.",
-        "isVisibleInHomeScreen" : false
+        "isVisibleInHomeScreen": false
       },
       {
         "title": "Morning Offering",
         "text": "O Jesus,\nthrough the Immaculate Heart of Mary,\nI offer You my prayers, works,\njoys and sufferings\nof this day for all the intentions\nof Your Sacred Heart,\nin union with the Holy Sacrifice of the Mass\nthroughout the world,\nin reparation for my sins,\nfor the intentions of all my relatives and friends,\nand in particular\nfor the intentions of the Holy Father.\n\nAmen.",
-        "isVisibleInHomeScreen" : true
+        "isVisibleInHomeScreen": true
       },
       {
         "title": "Daily Offering",
         "text": "Most Loving Father, \nI thank You for the gift of this new day. \nPlease help me to use it for Your honor and glory. \n\nBy your grace, \nmay all my thoughts, words, and actions \nbe pleasing today in Your sight.\n\nIn your great kindness, Lord Almighty \npreserve me on this day without sin \nand protect all Your people from evil. \nMay the ever blessed Virgin Mary, \nMother of our Savior, \nkeep us under her protection and by her prayers, \nand the aid of all Your saints, \nkeep us ever intent on doing good for Your sake. \n\nWe ask these blessing through Your son, Jesus Christ , \nour redeemer, \n\nAmen.",
-        "isVisibleInHomeScreen" : false
+        "isVisibleInHomeScreen": false
       },
       {
         "title": "Prayer Before Sleep",
         "text": "Jesus Christ, my God,\nI adore you and I thank you\nfor the many favors you have bestowed on me this day.\n\nI offer you my sleep and all the moments of this night,\nand I pray that you preserve me from sin.\nTherefore, I place myself in your most sacred side,\nand under the mantle of our Blessed Lady, my Mother.\nMay the holy Angels assist me and keep me in peace,\nand may your blessing be upon me.\n\nAmen.",
-        "isVisibleInHomeScreen" : true
+        "isVisibleInHomeScreen": true
       },
       {
         "title": "Memorare",
         "text": "Remember, O most gracious Virgin Mary,\nthat never was it known\nthat anyone who fled to thy protection,\nimplored thy help,\nor sought thy intercession,\nwas left unaided.\nInspired by this confidence\nI fly unto thee,\nO Virgin of virgins, my Mother.\nTo thee do I come,\nbefore thee I stand,\nsinful and sorrowful.\nO Mother of the Word Incarnate,\ndespise not my petitions,\nbut in thy mercy hear and answer me.\n\nAmen.",
-        "isVisibleInHomeScreen" : true
+        "isVisibleInHomeScreen": true
       },
       {
         "title": "Prayer for Guidance",
         "text": "Dear Heavenly Father,\nI come before You today\nknowing that You are my refuge and strength,\nmy ever-present help in times of trouble.\n\nLord,\nwhen I face challenges and uncertainties,\ngrant me the strength and courage to trust in You.\nHelp me to live in a way that reflects Your wisdom\nand guide my steps each day.\n\nIn Jesus' name,\nAmen.",
-        "isVisibleInHomeScreen" : false
+        "isVisibleInHomeScreen": false
       },
       {
         "title": "Act of Contrition",
         "text": "Oh God,\nI am sorry for my sins with all my heart.\nIn choosing to do wrong and failing to do good,\nI have sinned against you whom I should love above all things.\n\nI firmly intend, with your help of your grace,\nto do penance,\nto sin no more,\nand to avoid whatever leads me to sin.\n\nAmen.",
-        "isVisibleInHomeScreen" : true
+        "isVisibleInHomeScreen": true
       },
       {
         "title": "Act of Faith",
         "text": "O my God, I firmly believe\nthat you are one God in three divine Persons,\nFather, Son, and Holy Spirit.\nI believe that your divine Son became man\nand died for our sins and that he will come\nto judge the living and the dead.\nI believe these and all the truths\nwhich the Holy Catholic Church teaches\nbecause you have revealed them\nwho are eternal truth and wisdom,\nwho can neither deceive nor be deceived.\nIn this faith I intend to live and die.\n\nAmen.",
-        "isVisibleInHomeScreen" : false
+        "isVisibleInHomeScreen": false
       },
       {
         "title": "Act of Hope",
         "text": "O Lord God,\nI hope by your grace for the pardon\nof all my sins\nand after life here to gain eternal happiness\nbecause you have promised it\nwho are infinitely powerful, faithful, kind,\nand merciful.\nIn this hope I intend to live and die.\n\nAmen.",
-        "isVisibleInHomeScreen" : false
+        "isVisibleInHomeScreen": false
       },
       {
         "title": "Act of Love",
         "text": "O Lord God, I love you above all things\nand I love my neighbor for your sake\nbecause you are the highest, infinite and perfect\ngood, worthy of all my love.\nIn this love I intend to live and die.\n\nAmen.",
-        "isVisibleInHomeScreen" : false
+        "isVisibleInHomeScreen": false
       }
     ]
   },

@@ -64,6 +64,23 @@ class _PrayerBookHomePageState extends State<PrayerBookHomePage> {
         .toList();
   }
 
+  List<String> getMysteriesForTitle(String title) {
+    final Map<String, dynamic> configuredMysteries = Map<String, dynamic>.from(
+      widget.content.interactiveRosary['mysteriesByTitleKeyword'] as Map,
+    );
+    final String normalizedTitle = title.toLowerCase();
+
+    for (final MapEntry<String, dynamic> entry in configuredMysteries.entries) {
+      if (entry.key == 'default') continue;
+
+      if (normalizedTitle.contains(entry.key.toLowerCase())) {
+        return List<String>.from(entry.value as List<dynamic>);
+      }
+    }
+
+    return List<String>.from(configuredMysteries['default'] as List<dynamic>);
+  }
+
   Map<String, dynamic> getRosaryGuide(DateTime date) {
     final Map<String, dynamic> guideConfig = widget.content.rosaryGuide;
     final Map<String, dynamic> guidesByWeekday =
@@ -73,12 +90,14 @@ class _PrayerBookHomePageState extends State<PrayerBookHomePage> {
     final Map<String, dynamic> guide = Map<String, dynamic>.from(
       (guidesByWeekday[weekday] ?? guidesByWeekday[defaultWeekday]) as Map,
     );
+    final String title = guide['title'] as String;
 
     return <String, dynamic>{
       'weekday': weekday,
-      'title': guide['title'],
+      'title': title,
       'focus': guide['focus'],
       'steps': widget.content.stringListAt(guideConfig, 'steps'),
+      'mysteries': getMysteriesForTitle(title),
     };
   }
 

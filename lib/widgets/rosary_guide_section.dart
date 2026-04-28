@@ -19,8 +19,8 @@ class RosaryGuideSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final Map<String, dynamic> layout = content.layout;
     final Map<String, dynamic> interactiveRosary = content.interactiveRosary;
-    final List<String> steps =
-        List<String>.from(rosaryGuide['steps'] as List<dynamic>);
+    final List<String> mysteries =
+        List<String>.from(rosaryGuide['mysteries'] as List<dynamic>);
 
     return AppCard(
       content: content,
@@ -34,7 +34,7 @@ class RosaryGuideSection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'Rosary Guide',
+                      'Rosary Mysteries',
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     SizedBox(height: content.doubleAt(layout, 'smallGap') - 2),
@@ -63,10 +63,10 @@ class RosaryGuideSection extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           SizedBox(height: content.doubleAt(layout, 'largeGap')),
-          ...List<Widget>.generate(steps.length, (int index) {
+          ...List<Widget>.generate(mysteries.length, (int index) {
             return Padding(
               padding: EdgeInsets.only(
-                bottom: index == steps.length - 1
+                bottom: index == mysteries.length - 1
                     ? 0
                     : content.doubleAt(layout, 'mediumGap') - 2,
               ),
@@ -81,7 +81,7 @@ class RosaryGuideSection extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(top: 4),
-                      child: Text(steps[index]),
+                      child: Text(mysteries[index]),
                     ),
                   ),
                 ],

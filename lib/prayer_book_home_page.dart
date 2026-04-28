@@ -228,8 +228,28 @@ class _PrayerBookHomePageState extends State<PrayerBookHomePage> {
     );
   }
 
+  void _openInteractiveRosaryScreen() {
+    final Map<String, dynamic> rosaryGuide = getRosaryGuide(selectedDate);
+    final List<String> steps =
+        List<String>.from(rosaryGuide['steps'] as List<dynamic>);
+
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => InteractiveRosaryScreen(
+          content: widget.content,
+          title: rosaryGuide['title'] as String,
+          weekday: rosaryGuide['weekday'] as String,
+          steps: steps,
+        ),
+      ),
+    );
+  }
+
   void _handleMenuSelection(String value) {
     switch (value) {
+      case 'interactive_rosary':
+        _openInteractiveRosaryScreen();
+        break;
       case 'prayer_list':
         _openSupplementalPrayersScreen();
         break;
@@ -246,9 +266,6 @@ class _PrayerBookHomePageState extends State<PrayerBookHomePage> {
   Widget build(BuildContext context) {
     final Map<String, dynamic> layout = widget.content.layout;
     final Map<String, dynamic> rosaryGuide = getRosaryGuide(selectedDate);
-    final List<String> steps =
-        List<String>.from(rosaryGuide['steps'] as List<dynamic>);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Prayerbook'),
@@ -257,6 +274,10 @@ class _PrayerBookHomePageState extends State<PrayerBookHomePage> {
             icon: const Icon(Icons.menu_rounded),
             onSelected: _handleMenuSelection,
             itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+              const PopupMenuItem<String>(
+                value: 'interactive_rosary',
+                child: Text('Rosary'),
+              ),
               const PopupMenuItem<String>(
                 value: 'prayer_list',
                 child: Text('Prayer List'),
@@ -276,8 +297,8 @@ class _PrayerBookHomePageState extends State<PrayerBookHomePage> {
                 widget.content.doubleAt(layout, 'pagePadding'),
               ),
               child: isWide
-                  ? _buildWideLayout(layout, rosaryGuide, steps)
-                  : _buildMobileLayout(layout, rosaryGuide, steps),
+                  ? _buildWideLayout(layout, rosaryGuide)
+                  : _buildMobileLayout(layout, rosaryGuide),
             );
           },
         ),
@@ -300,26 +321,10 @@ class _PrayerBookHomePageState extends State<PrayerBookHomePage> {
     );
   }
 
-  Widget _buildRosarySection(
-    Map<String, dynamic> layout,
-    Map<String, dynamic> rosaryGuide,
-    List<String> steps,
-  ) {
+  Widget _buildRosarySection(Map<String, dynamic> rosaryGuide) {
     return RosaryGuideSection(
       content: widget.content,
       rosaryGuide: rosaryGuide,
-      onOpenInteractiveRosary: () {
-        Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => InteractiveRosaryScreen(
-              content: widget.content,
-              title: rosaryGuide['title'] as String,
-              weekday: rosaryGuide['weekday'] as String,
-              steps: steps,
-            ),
-          ),
-        );
-      },
     );
   }
 
@@ -346,7 +351,6 @@ class _PrayerBookHomePageState extends State<PrayerBookHomePage> {
   Widget _buildWideLayout(
     Map<String, dynamic> layout,
     Map<String, dynamic> rosaryGuide,
-    List<String> steps,
   ) {
     final double gap = widget.content.doubleAt(layout, 'largeGap');
 
@@ -359,7 +363,7 @@ class _PrayerBookHomePageState extends State<PrayerBookHomePage> {
             children: <Widget>[
               _buildCalendarSection(layout),
               SizedBox(height: gap),
-              _buildRosarySection(layout, rosaryGuide, steps),
+              _buildRosarySection(rosaryGuide),
             ],
           ),
         ),
@@ -381,7 +385,6 @@ class _PrayerBookHomePageState extends State<PrayerBookHomePage> {
   Widget _buildMobileLayout(
     Map<String, dynamic> layout,
     Map<String, dynamic> rosaryGuide,
-    List<String> steps,
   ) {
     final double gap = widget.content.doubleAt(layout, 'largeGap');
 
@@ -389,7 +392,7 @@ class _PrayerBookHomePageState extends State<PrayerBookHomePage> {
       children: <Widget>[
         _buildCalendarSection(layout),
         SizedBox(height: gap),
-        _buildRosarySection(layout, rosaryGuide, steps),
+        _buildRosarySection(rosaryGuide),
         SizedBox(height: gap),
         _buildGospelSection(),
         SizedBox(height: gap),

@@ -6,19 +6,16 @@ import 'app_card.dart';
 class RosaryGuideSection extends StatelessWidget {
   final AppContent content;
   final Map<String, dynamic> rosaryGuide;
-  final VoidCallback onOpenInteractiveRosary;
 
   const RosaryGuideSection({
     super.key,
     required this.content,
     required this.rosaryGuide,
-    required this.onOpenInteractiveRosary,
   });
 
   @override
   Widget build(BuildContext context) {
     final Map<String, dynamic> layout = content.layout;
-    final Map<String, dynamic> interactiveRosary = content.interactiveRosary;
     final List<String> mysteries =
         List<String>.from(rosaryGuide['mysteries'] as List<dynamic>);
 
@@ -47,13 +44,9 @@ class RosaryGuideSection extends StatelessWidget {
                   ],
                 ),
               ),
-              IconButton(
-                onPressed: onOpenInteractiveRosary,
-                icon: const Icon(Icons.auto_stories_rounded),
-                tooltip: content.stringAt(
-                  interactiveRosary,
-                  'openInteractiveRosaryTooltip',
-                ),
+              Icon(
+                Icons.auto_stories_rounded,
+                color: Theme.of(context).colorScheme.primary,
               ),
             ],
           ),

@@ -191,8 +191,8 @@
       "Joyful": [
         "The Annunciation",
         "The Visitation",
-        "The Nativity",
-        "The Presentation",
+        "The birth of Our Lord",
+        "The Presentation of our Lord at the temple",
         "The Finding in the Temple"
       ],
       "Sorrowful": [
@@ -200,21 +200,21 @@
         "The Scourging at the Pillar",
         "The Crowning with Thorns",
         "The Carrying of the Cross",
-        "The Crucifixion"
+        "The Crucifixion and Death of our Lord"
       ],
       "Luminous": [
-        "The Baptism of Jesus",
-        "The Wedding at Cana",
-        "The Proclamation of the Kingdom",
+        "The Baptism of the Lord",
+        "The Wedding in Cana",
+        "The Proclamation of the Kingdom of God and call to conversion",
         "The Transfiguration",
         "The Institution of the Eucharist"
       ],
       "default": [
-        "The Resurrection",
-        "The Ascension",
-        "The Descent of the Holy Spirit",
-        "The Assumption",
-        "The Coronation of Mary"
+        "The Resurrection of our Lord Jesus",
+        "The Ascension of our Lord into Heaven",
+        "The Descent of the Holy Spirit upon Mary and the Apostles",
+        "The Assumption of Mary into Heaven",
+        "The Coronation of Mary as Queen of Heaven and Earth"
       ]
     },
     "additionalPrayers": [
